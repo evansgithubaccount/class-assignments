@@ -79,10 +79,14 @@ function playRound(playerOne, playerTwo) {
 }
 
 function playGame1(playerOne,playerFour,playUntil) {
+    document.getElementById("tourneySum").innerHTML = "";
+    document.getElementById("gameOnePlayers").innerHTML = "";
+    document.getElementById("gameTwoPlayers").innerHTML = "";
+    document.getElementById("finalPlayers").innerHTML = "";
     console.log("-----GAME NUMBER 1-----")
     document.getElementById("gameOnePlayers").innerHTML = `Game 1: ${userPlayer.name} vs ${otherPlayer.name}`;
     while (playerOne.wins<(playUntil)&&playerFour.wins<(playUntil)) {
-        setTimeout(playRound(playerOne,playerFour),1000);
+        setInterval(playRound(playerOne,playerFour),1000);
     }
     document.getElementById("gameOnePlayers").innerHTML = `Game 1: ${userPlayer.name} vs ${otherPlayer.name} -- FINAL SCORE: ${userPlayer.wins} to ${otherPlayer.wins}`
     document.getElementById("roundResult").innerHTML = "";
@@ -102,7 +106,7 @@ function playGame2(playerTwo,playerThree,playUntil) {
     console.log("-----GAME NUMBER 2-----")
     document.getElementById("gameTwoPlayers").innerHTML = `Game 2: ${playerTwo.name} vs ${playerThree.name}`
     while (playerTwo.wins<playUntil && playerThree.wins<playUntil) {
-        setTimeout(playRound(playerTwo,playerThree),1000);
+        setInterval(playRound(playerTwo,playerThree),1000);
     }
     document.getElementById("gameTwoPlayers").innerHTML = `Game 2: ${playerTwo.name} vs ${playerThree.name} -- FINAL SCORE: ${playerTwo.wins} to ${playerThree.wins}`;
     document.getElementById("roundResult").innerHTML = "";
@@ -124,7 +128,7 @@ function playFinal(playerOne,playerTwo,playUntil) {
     playerOne.wins=0;
     playerTwo.wins =0;
     while (playerOne.wins<playUntil && playerTwo.wins<playUntil) {
-        setTimeout(playRound(playerOne,playerTwo),1000);
+        setInterval(playRound(playerOne,playerTwo),1000);
     }
     document.getElementById("finalPlayers").innerHTML = `Championship: ${playerOne.name} vs ${playerTwo.name} -- FINAL SCORE: ${playerOne.wins} to ${playerTwo.wins}`
     document.getElementById("roundResult").innerHTML = "";
@@ -145,5 +149,9 @@ function playTourney(playerOne,playerTwo,playerThree,playerFour,playUntil) {
     GameFinal.wins = playUntil * 2;
     document.getElementById("tourneySum").innerHTML = `The winner of the tournament is ${GameFinal.name} -- Wins: ${GameFinal.wins} Losses: ${GameFinal.losses}`;
     document.getElementById("playerSelect").style.display="block"
+    player1.wins = 0; player1.losses = 0;
+    player2.wins = 0; player2.losses = 0;
+    player3.wins = 0; player3.losses = 0;
+    player4.wins = 0; player4.losses = 0;
     return GameFinal;
 }
