@@ -1,3 +1,5 @@
+document.querySelector('input.newToDo').value = ""
+
 let list = document.querySelector('ul.list');
 
 function addItem(){
